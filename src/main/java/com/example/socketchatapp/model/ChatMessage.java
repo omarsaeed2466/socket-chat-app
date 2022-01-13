@@ -6,6 +6,9 @@ public class ChatMessage {
     private String MessageType ;
     private  ChatType chatType ;
 
+    public ChatMessage() {
+    }
+
     public String getMessage() {
         return message;
     }
