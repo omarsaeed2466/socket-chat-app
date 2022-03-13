@@ -2,6 +2,7 @@ package com.example.socketchatapp.config;
 
 import com.example.socketchatapp.model.ChatMessage;
 import com.example.socketchatapp.model.ChatType;
+import com.example.socketchatapp.model.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoProperties;
 import org.springframework.context.event.EventListener;
@@ -25,7 +26,7 @@ public class SocketAction {
             ChatMessage chatMessage = new ChatMessage();
             chatMessage.setChatType(ChatType.LEAVE);
             chatMessage.setSender(userName);
-
+            Storage.removeBySession(headerAccessor.getSessionId());
             messagingTemplate.convertAndSend("/topic/all",chatMessage);
         }
     }
